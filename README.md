@@ -2,7 +2,7 @@
 
 ### Contributors: 
   * [Daisy Rocha-Montanez](https://github.com/daisyrocha) 
-  * (insert name)
+  * [Ignacio Gramajo](https://github.com/IGramajoO)
   * (insert name)
   * (insert name)
 
