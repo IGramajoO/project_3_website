@@ -10,8 +10,14 @@
  (coming soon) 
 
 
+### Tech Stack: 
+  * Springboot
+  * JawsDB
+  * Heroku
+  * Docker
+  
 ### API being used: 
-  (TBA)
+  [Superhero API](https://superheroapi.com/)
                 
 
 ### Resources: 
