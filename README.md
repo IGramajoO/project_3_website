@@ -25,7 +25,7 @@
 ![Screen Shot 2022-04-10 at 12 43 10 AM](https://user-images.githubusercontent.com/72002539/162607985-5fa946a9-3c36-4a92-99e3-62c1d6598729.png)
 
 ### ERD
-
+![image](https://user-images.githubusercontent.com/89751770/162643709-ccb7f93d-6f6d-488c-8298-df0099333b5e.png)
 
 ### Resources: 
   * (TBA)
