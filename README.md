@@ -1,4 +1,4 @@
-# Project Title: Superhero Battle
+# Project Title: Hero Brawl
 
 [Android Repo](https://github.com/daisyrocha/project_3_android)
 
@@ -9,7 +9,7 @@
   * [Luis Morales](https://github.com/LuiM112)
 
 ### Description: 
- (coming soon) 
+Hero Brawl is an app the revolves around collecting heroes and having them battle other heroes. The Player is to create an account in order to keep track of their efforts in the app, in terms of gaining points to obtain new heroes and their wins and losses in their battles. They will be allowed to create two teams of five or less to send to battle, it doesn't matter what's in the team who's in the team, as long as they have them. This will be functional between both in the web and andriod. 
 
 
 ### Tech Stack: 
