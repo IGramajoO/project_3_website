@@ -20,7 +20,9 @@
   
 ### API being used: 
   [Superhero API](https://superheroapi.com/)
-                
+
+### Wireframe
+![Screen Shot 2022-04-10 at 12 43 10 AM](https://user-images.githubusercontent.com/72002539/162607985-5fa946a9-3c36-4a92-99e3-62c1d6598729.png)
 
 ### Resources: 
   * (TBA)
