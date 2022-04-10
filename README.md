@@ -1,4 +1,4 @@
-# Project Title: (Coming soon)
+# Project Title: Superhero Battle
 
 ### Contributors: 
   * [Daisy Rocha-Montanez](https://github.com/daisyrocha) 
