@@ -19,7 +19,20 @@ Hero Brawl is an app the revolves around collecting heroes and having them battl
   * Docker
   
 ### API being used: 
-  [Superhero API](https://superheroapi.com/)
+ * [Superhero API](https://superheroapi.com/)
+ * Internal API: URL/api/(endpoint)
+
+### Tentative Endpoints: 
+  * GET /allUsers 
+  * PUT /addTeam?userId=${userId}&teamName={$teamName} (Create new team for a user)
+  * PUT /addToTeam?teamId={$teamId}&characterId=${charId} (Add a character to a team)
+  * GET /getTeams?userId={$userId} (Get teams for a specific user)
+  * GET /getTeam?userId=${userId}&teamId={$teamId} (Get a specific team from a user)
+  * POST /login?username={$username}&password={$password}
+  * POST /newuser?username={$username}&password={$password}
+  * POST /logout?username={$username}
+  * DELETE /deleteAccount?userId={$userId}
+  * PUT /removeCharacter?teamId={$teamId}&characterId=${charId} (Remove Character from a team)
 
 ### Wireframe
 ![Screen Shot 2022-04-10 at 12 43 10 AM](https://user-images.githubusercontent.com/72002539/162607985-5fa946a9-3c36-4a92-99e3-62c1d6598729.png)
