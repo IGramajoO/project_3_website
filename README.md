@@ -1,5 +1,7 @@
 # Project Title: Superhero Battle
 
+[Android Repo](https://github.com/daisyrocha/project_3_android)
+
 ### Contributors: 
   * [Daisy Rocha-Montanez](https://github.com/daisyrocha) 
   * [Ignacio Gramajo](https://github.com/IGramajoO)
@@ -12,7 +14,7 @@
 
 ### Tech Stack: 
   * Springboot
-  * JawsDB
+  * JawsDB - mySQL
   * Heroku
   * Docker
   
