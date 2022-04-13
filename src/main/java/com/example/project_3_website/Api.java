@@ -11,7 +11,7 @@ public class Api {
     private UserRepository userRepository;
 
     @GetMapping(path="/allUsers")
-    public Iterable<User> getAllUsers(){
+    public Iterable<User> allUsers(){
             return userRepository.findAll();
         }
 
