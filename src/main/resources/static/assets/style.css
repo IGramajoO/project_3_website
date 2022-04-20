@@ -1,0 +1,38 @@
+/* .wow {
+  width: 100px;
+} */
+
+h1{
+    text-align: center;
+}
+
+header{
+    background: skyblue;
+}
+
+#loginForm {
+    border: .5px solid;
+    border-radius: 5px;
+    padding: 10px;
+    /*   position: absolute; */
+    /*   top: 50%; */
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 200px;
+
+}
+
+#landingPage {
+    display: flex;
+    flex-direction: column;
+    margin-top: 200px;
+}
+
+#landingBtns {
+    margin: 0 auto;
+}
+
+#btn{
+    width: 200px;
+}
+
