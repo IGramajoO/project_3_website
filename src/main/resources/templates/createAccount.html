@@ -21,41 +21,21 @@
     <form action = "/createAccount" method = "post">
       <div class="form-group">
         <label for="usernameInput">Username</label>
-        <input type="text" class="form-control p-1 m-1" id="usernameInput" aria-describedby="emailHelp" placeholder="Enter username">
+        <input type="text" class="form-control p-1 m-1" id="usernameInput" aria-describedby="emailHelp" placeholder="Enter username" name = "username">
       </div>
       <div class="form-group">
         <label for="passwordInput">Password</label>
-        <input type="password" class="form-control p-1 m-1" id="passwordInput" placeholder="Password">
+        <input type="password" class="form-control p-1 m-1" id="passwordInput" placeholder="Password" name = "password">
       </div>
       <div class="form-group">
         <label for="confirmPass">Confirm Password</label>
-        <input type="password" class="form-control p-1 m-1" id="confirmPass" placeholder="Confirm Password">
+        <input type="password" class="form-control p-1 m-1" id="confirmPass" placeholder="Confirm Password" name = "confirmPassword">
       </div>
       <button type="submit" class="btn btn-primary m-1">Create Account</button>
+      <p th:text="${error_message} ?: ''" style = "color: red">  </p>
     </form>
   </div>
 </main>
 <script src="../public/assets/js/script.js"></script>
 </body>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
 </html>

@@ -68,6 +68,7 @@ public class LoginController {
                     Matcher match = pattern.matcher(password);
                     if(password.length() >= 6 && match.find()){
                         userRepository.save(new User(username,password));
+                        return "login";
                         //Redirect to the home page
                     }
                     else{
@@ -79,10 +80,12 @@ public class LoginController {
                 }
             }
             else{
-                model.addAttribute("error_message", "Username has been taken.");
+                model.addAttribute("error_message", "Username field can't be empty.");
             }
         }
-
+        else{
+            model.addAttribute("error_message", "Username has been taken.");
+        }
 
         return "createAccount";
     }
