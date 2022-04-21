@@ -1,5 +1,4 @@
-package Controller;
-
+package com.example.project_3_website;
 
 import com.example.project_3_website.User;
 import com.example.project_3_website.UserRepository;
@@ -38,18 +37,19 @@ public class LoginController {
         if(user != null){
             if(user.getPassword().equals(password)){
                 session.setAttribute("User_Session", user);
+                return "accountPage";
             }
         }
         model.addAttribute("Error_Message", "Incorrect username or password, please try again");
         return "login";
     }
 
-    @RequestMapping(value = "/create_account")
+    @RequestMapping(value = "/createAccount")
     String create_account(Model model){
-        return "create_account";
+        return "createAccount";
     }
 
-    @RequestMapping(value = "/create_account", method = RequestMethod.POST)
+    @RequestMapping(value = "/createAccount", method = RequestMethod.POST)
     String create_account(HttpServletResponse response,
                           HttpServletRequest request,
                           Model model,
@@ -68,6 +68,7 @@ public class LoginController {
                     Matcher match = pattern.matcher(password);
                     if(password.length() >= 6 && match.find()){
                         userRepository.save(new User(username,password));
+                        return "login";
                         //Redirect to the home page
                     }
                     else{
@@ -79,12 +80,14 @@ public class LoginController {
                 }
             }
             else{
-                model.addAttribute("error_message", "Username has been taken.");
+                model.addAttribute("error_message", "Username field can't be empty.");
             }
         }
+        else{
+            model.addAttribute("error_message", "Username has been taken.");
+        }
 
-
-        return "CreateAccount";
+        return "createAccount";
     }
 
 
