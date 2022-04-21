@@ -22,12 +22,12 @@ public class LoginController {
     @Autowired
     UserRepository userRepository;
 
-    @RequestMapping(path = "/login")
+    @RequestMapping(value = "/login")
     String login(){
         return "login";
     }
 
-    @RequestMapping(path = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     String login(HttpServletRequest response,
                  HttpSession session,
                  Model model,
