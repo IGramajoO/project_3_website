@@ -1,5 +1,4 @@
-package Controller;
-
+package com.example.project_3_website;
 
 import com.example.project_3_website.User;
 import com.example.project_3_website.UserRepository;
@@ -23,12 +22,12 @@ public class LoginController {
     @Autowired
     UserRepository userRepository;
 
-    @RequestMapping(value = "/login")
+    @RequestMapping(path = "/login")
     String login(){
         return "login";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(path = "/login", method = RequestMethod.POST)
     String login(HttpServletRequest response,
                  HttpSession session,
                  Model model,
@@ -38,18 +37,19 @@ public class LoginController {
         if(user != null){
             if(user.getPassword().equals(password)){
                 session.setAttribute("User_Session", user);
+                return "accountPage";
             }
         }
         model.addAttribute("Error_Message", "Incorrect username or password, please try again");
         return "login";
     }
 
-    @RequestMapping(value = "/create_account")
+    @RequestMapping(value = "/createAccount")
     String create_account(Model model){
-        return "create_account";
+        return "createAccount";
     }
 
-    @RequestMapping(value = "/create_account", method = RequestMethod.POST)
+    @RequestMapping(value = "/createAccount", method = RequestMethod.POST)
     String create_account(HttpServletResponse response,
                           HttpServletRequest request,
                           Model model,
@@ -84,7 +84,7 @@ public class LoginController {
         }
 
 
-        return "CreateAccount";
+        return "createAccount";
     }
 
 

@@ -14,8 +14,6 @@ header{
     border: .5px solid;
     border-radius: 5px;
     padding: 10px;
-    /*   position: absolute; */
-    /*   top: 50%; */
     width: 40%;
     margin: 0 auto;
     margin-top: 200px;
@@ -28,11 +26,11 @@ header{
     margin-top: 200px;
 }
 
-#landingBtns {
+.landingBtns {
     margin: 0 auto;
 }
 
-#btn{
+#loginBtn, #createAccBtn {
     width: 200px;
 }
 
