@@ -25,8 +25,10 @@ public class RestSpringBootController {
             return new ResponseEntity<>("Error!, Please try again", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     @GetMapping("/restHero/{id}")
     public ResponseEntity<?> getHeroes(@PathVariable String id) {
+
         try {
             String uri="https://www.superheroapi.com/api.php/109324175078057/"+id+"/powerstats";
             RestTemplate restTemplate = new RestTemplate();
