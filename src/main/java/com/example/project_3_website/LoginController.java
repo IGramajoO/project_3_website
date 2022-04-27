@@ -44,6 +44,12 @@ public class LoginController {
         return "login";
     }
 
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    void logout(HttpServletResponse response, HttpSession session) throws IOException {
+        session.setAttribute("User_Session", null);
+        response.sendRedirect("/login");
+    }
+
     @RequestMapping(value = "/createAccount")
     String create_account(Model model){
         return "createAccount";
