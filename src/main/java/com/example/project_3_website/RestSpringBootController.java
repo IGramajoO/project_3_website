@@ -37,6 +37,7 @@ public class RestSpringBootController {
             String result = restTemplate.getForObject(uri, String.class);
             return new ResponseEntity<>(result, HttpStatus.OK);
         }catch (Exception e){
+
             e.printStackTrace();
             return new ResponseEntity<>("Error!, Please try again", HttpStatus.INTERNAL_SERVER_ERROR);
         }
