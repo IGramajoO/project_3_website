@@ -14,6 +14,7 @@ public class RestSpringBootController {
 
     @GetMapping
     public ResponseEntity<?> getHero() {
+
         try {
             HttpRequest request = HttpRequest
                     .get("https://www.superheroapi.com/api.php/109324175078057")
@@ -24,6 +25,7 @@ public class RestSpringBootController {
             e.printStackTrace();
             return new ResponseEntity<>("Error!, Please try again", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+
     }
 
     @GetMapping("/restHero/{id}")
