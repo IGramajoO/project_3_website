@@ -27,6 +27,28 @@ public class LoginController {
         return "login";
     }
 
+    @RequestMapping(value = "/accountPage")
+    String accountPage(HttpSession session){
+
+        if(session.getAttribute("User_Session") == null){
+            return "login";
+        }
+        else{
+            return "accountPage";
+        }
+    }
+
+    @RequestMapping(value = "/team")
+    String team(HttpSession session){
+
+        if(session.getAttribute("User_Session") == null){
+            return "login";
+        }
+        else{
+            return "team";
+        }
+    }
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     String login(HttpServletRequest response,
                  HttpSession session,

@@ -1,6 +1,6 @@
-/* .wow {
+.wow {
   width: 100px;
-} */
+}
 
 h1{
     text-align: center;
@@ -34,3 +34,109 @@ header{
     width: 200px;
 }
 
+#userTeams {
+    display: flex;
+    justify-content: space-evenly;
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+    width: 40%;
+    margin: 0 auto;
+
+}
+
+.teamName, .score {
+    text-align: center;
+    font-size: 110%;
+    /*background-color: blue;*/
+}
+
+.score{
+    border-bottom: 1px solid;
+}
+
+.team{
+    padding: 3px;
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+.hero {
+    text-align: center;
+    padding: 2px;
+    /*background-color: blue;*/
+}
+
+#newTeam, #createTeamBtn {
+    text-align: center;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+/* TODO: Maybe change these to be in the nav bar and show up only while logged in*/
+#accountButtons {
+    /*margin-top: 60px;*/
+    margin: 0 auto;
+    margin-top: 150px;
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+}
+
+#teamCard, table {
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
+td{
+    text-align: center;
+    border-radius: 5px;
+    width: 130px;
+}
+
+.stats{
+    width: 260px;
+}
+
+img{
+    width: 130px;
+    height: 100px;
+    display: block;
+}
+
+#teamTitle {
+    margin-top: 100px;
+    text-align: center;
+}
+
+#addChar{
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link, a:visited {
+    padding-left: 3px;
+    padding-right: 3px;
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    /*background: white;*/
+    /*color: #0f2c4e;*/
+}
+
+nav{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+    font-size: 130%;
+
+}
+
+h2{
+    text-align: center;
+}
