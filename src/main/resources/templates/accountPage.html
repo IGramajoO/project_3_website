@@ -13,18 +13,25 @@
 <body>
     <main>
         <header>
-            <h2 style = "text-align: center" th:text="${session.User_Session.username} + '\'s Teams'">
-            </h2>
+            <h1>
+                Hero Brawl
+            </h1>
+            <nav th:insert="fragments.html :: nav">
+            </nav>
         </header>
 
         <div id = "accountPageContent">
+            <div style = "margin-top: 130px">
+                <h2 style = "text-align: center" th:text="${session.User_Session.username} + '\'s Teams'">
+                </h2>
+            </div>
             <div id = "userTeams">
                 <div class = "team">
+                    <div class = "teamName">
+                        <strong> <a href = "/team">Team One </a></strong>
+                    </div>
                     <div class = "score">
                         Team Rating: 123
-                    </div>
-                    <div class = "teamName">
-                        <strong>Team One</strong>
                     </div>
                     <div class = "hero">
                         Hero One
@@ -69,21 +76,9 @@
                 </div>
             </div>
             <div id = "newTeam">
-                <form action = "#" >  <!--th:action="@{login}"-->
+                <form action = "#"  > <!-- th:action="@{newTeam}" -->
                     <button type="submit" class="btn btn-primary btn-lg m-2 p-2 align-content-center" id = "createTeamBtn">
                         Create New Team
-                    </button>
-                </form>
-            </div>
-            <div id = "accountButtons">
-                <form action = "#" >  <!--th:action="@{login}"-->
-                    <button type="submit" class="btn btn-primary btn-lg m-2 p-2 align-content-center" id = "logoutBtn">
-                        Logout
-                    </button>
-                </form>
-                <form action = "#" >  <!--th:action="@{login}"-->
-                    <button type="submit" class="btn btn-primary btn-lg m-2 p-2 align-content-center" id = "settingsBtn">
-                        Account Page
                     </button>
                 </form>
             </div>
