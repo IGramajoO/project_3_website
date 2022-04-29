@@ -27,6 +27,17 @@ public class LoginController {
         return "login";
     }
 
+    @RequestMapping(value = "/profile")
+    String profile(HttpSession session){
+        if(session.getAttribute("User_Session") == null){
+            return "login";
+        }
+        else{
+            return "profile";
+        }
+
+    }
+
     @RequestMapping(value = "/accountPage")
     String accountPage(HttpSession session){
 
@@ -46,6 +57,28 @@ public class LoginController {
         }
         else{
             return "team";
+        }
+    }
+
+    @RequestMapping(value = "/newTeam")
+    String newTeam(HttpSession session){
+
+        if(session.getAttribute("User_Session") == null){
+            return "login";
+        }
+        else{
+            return "newTeam";
+        }
+    }
+
+    @RequestMapping(value = "/addCharacter")
+    String addCharacter(HttpSession session){
+
+        if(session.getAttribute("User_Session") == null){
+            return "login";
+        }
+        else{
+            return "addCharacter";
         }
     }
 
