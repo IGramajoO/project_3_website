@@ -5,6 +5,7 @@ import com.example.project_3_website.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -42,6 +44,24 @@ public class LoginController {
         }
         model.addAttribute("Error_Message", "Incorrect username or password, please try again");
         return "login";
+    }
+
+    @RequestMapping(value = "/user")
+    public String user(Principal principal,
+                       HttpSession session,
+                       Model model) throws IOException{
+        System.out.println(principal);
+        User user = userRepository.findUserByUsername(principal.getName().substring(0,10));
+        User newUser = new User();
+        if(user == null){
+            newUser.setUsername(principal.getName().substring(0,10));
+            newUser.setPassword("password@");
+            userRepository.save(newUser);
+            session.setAttribute("User_Session", newUser);
+            return "accountPage";
+        }
+        session.setAttribute("User_Session", user);
+        return "accountPage";
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
