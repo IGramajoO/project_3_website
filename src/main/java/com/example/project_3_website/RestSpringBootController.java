@@ -52,7 +52,8 @@ public class RestSpringBootController {
             String result = restTemplate.getForObject(uri, String.class);
             ResponseEntity<String> response = new ResponseEntity<>(result, HttpStatus.OK);
             String s = response.toString();
-            String x = canUse(id); //looks like we CAN call other methods in springboot
+            String x = canUse(id);
+            //looks like we CAN call other methods in springboot
             return s + " use? " + x;
         }catch (Exception e){
 
