@@ -42,4 +42,45 @@ public class RestSpringBootController {
             return new ResponseEntity<>("Error!, Please try again", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/restHeroInfo/{id}")
+    public String getHeroInfo(@PathVariable String id) {
+
+        try {
+            String uri="https://www.superheroapi.com/api.php/109324175078057/"+id+"/powerstats";
+            RestTemplate restTemplate = new RestTemplate();
+            String result = restTemplate.getForObject(uri, String.class);
+            ResponseEntity<String> response = new ResponseEntity<>(result, HttpStatus.OK);
+            String s = response.toString();
+            String x = canUse(id);
+            return s + " use? " + x;
+        }catch (Exception e){
+
+            e.printStackTrace();
+            return "sorry no work";
+        }
+    }
+
+    @GetMapping("/restHeroUsable/{id}")
+    public String canUse(@PathVariable String id) {
+
+        try {
+            String uri="https://www.superheroapi.com/api.php/109324175078057/"+id+"/powerstats";
+            RestTemplate restTemplate = new RestTemplate();
+            String result = restTemplate.getForObject(uri, String.class);
+            ResponseEntity<String> response = new ResponseEntity<>(result, HttpStatus.OK);
+            String s = response.toString();
+            if (s.contains("null")){
+                return "0";
+            } else {
+                return "1";
+            }
+        }catch (Exception e){
+
+            e.printStackTrace();
+            return "sorry no work";
+        }
+    }
+
+
 }
