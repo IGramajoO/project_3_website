@@ -1,20 +1,32 @@
 package com.example.project_3_website;
 
-import com.example.project_3_website.User;
-import com.example.project_3_website.UserRepository;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -52,7 +64,34 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/team")
-    String team(HttpSession session){
+    String team(HttpSession session, Model model) throws JSONException {
+
+        String uri="https://www.superheroapi.com/api.php/109324175078057/520/powerstats";
+        RestTemplate restTemplate = new RestTemplate();
+        String result = restTemplate.getForObject(uri, String.class);
+        ResponseEntity<String> responseEntity = restTemplate.getForEntity(uri, String.class);
+        String heroString = responseEntity.getBody();
+        JSONObject jsonObject= new JSONObject(heroString);
+        model.addAttribute("hero", jsonObject);
+
+
+//        ResponseEntity<String> responseEntity = restTemplate.getForEntity(uri, String.class);
+//        String objects = responseEntity.getBody();
+//        MediaType contentType = responseEntity.getHeaders().getContentType();
+//        HttpStatus statusCode = responseEntity.getStatusCode();
+//        ResponseEntity<String> response = new ResponseEntity<>(result, HttpStatus.OK);
+//        String s = response.toString();
+
+//        RestTemplate restTemplate = new RestTemplate();
+//        ResponseEntity<List<Hero>> rateResponse =
+//                restTemplate.exchange("https://www.superheroapi.com/api.php/109324175078057/520/powerstats",
+//                        HttpMethod.GET, null, new ParameterizedTypeReference<List<Hero>>() {
+//                        });
+//        List<Hero> rates = rateResponse.getBody();
+
+//        ResponseEntity<Hero[]> responseEntity = restTemplate.getForEntity(uri, Hero[].class);
+//        Hero[] heroes = responseEntity.getBody();
+
 
         if(session.getAttribute("User_Session") == null){
             return "login";
