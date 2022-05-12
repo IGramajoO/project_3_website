@@ -13,12 +13,12 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "userId", nullable = false)
-    private Integer Id;
+    private Integer userId;
 
     private String username;
     private String password;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId")
     List<Team> teamList = new ArrayList<>();
 
@@ -45,11 +45,11 @@ public class User {
     }
 
     public Integer getId() {
-        return Id;
+        return userId;
     }
 
-    public void setId(Integer id) {
-        Id = id;
+    public void setId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {

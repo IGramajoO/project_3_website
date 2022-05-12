@@ -12,7 +12,7 @@ public class Team {
     @Column(name = "teamId", nullable = false)
     private int teamId;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "teamId")
     List<Heroes> heroesList= new ArrayList<>();
 

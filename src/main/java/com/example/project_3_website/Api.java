@@ -21,12 +21,16 @@ public class Api {
     @GetMapping(path="/allUsers")
     Iterable<User> allUsers(){
             return userRepository.findAll();
-        }
+    }
+
+    @GetMapping(path="/allTeams")
+    Iterable<Team> allTeams(){
+        return teamRepository.findAll();
+    }
 
     @PostMapping(path="/addUser")
     public String addUser(@RequestParam String username, @RequestParam String password) {
         User user = new User(username, password);
-
         userRepository.save(user);
         return "saved";
     }
@@ -56,7 +60,7 @@ public class Api {
         Heroes hero = new Heroes(heroId, Integer.parseInt(numbers[0]),Integer.parseInt(numbers[1]),Integer.parseInt(numbers[2]),Integer.parseInt(numbers[3]),Integer.parseInt(numbers[4]),Integer.parseInt(numbers[5]));
 
         if(teamRepository.existsById(teamId)){
-            Team team = teamRepository.findTeamById(teamId);
+            Team team = teamRepository.findByTeamId(teamId);
             if (userRepository.findUserByUsername(username)!=null){
                 team.addHeroes(hero);
 
