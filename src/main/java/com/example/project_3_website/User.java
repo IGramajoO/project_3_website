@@ -19,6 +19,7 @@ public class User {
     private String username;
     private String password;
 
+
     @OneToMany(fetch = FetchType.LAZY,cascade=CascadeType.ALL)
     @JoinColumn(name = "userId")
     List<Team> teamList = new ArrayList<>();

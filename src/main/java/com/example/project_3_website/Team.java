@@ -7,7 +7,6 @@ import java.util.List;
 @Entity
 @Table(name = "team")
 public class Team {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "teamId", nullable = false)

@@ -8,7 +8,6 @@ import java.util.List;
 @RestController
 @RequestMapping(path="/api")
 public class Api {
-
     @Autowired
     private UserRepository userRepository;
 
@@ -34,7 +33,6 @@ public class Api {
         userRepository.save(user);
         return "saved";
     }
-
     @PostMapping("/addTeam")
     public @ResponseBody String addteam(@RequestParam String username){
         Team team = new Team();
