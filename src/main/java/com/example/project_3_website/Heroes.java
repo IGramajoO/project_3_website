@@ -5,9 +5,6 @@ import javax.persistence.*;
 @Entity
 public class Heroes {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int heroesId;
-
     @Column(name = "heroId", nullable = false)
     private int heroId;
     @Column(name = "intelligence", nullable = false)

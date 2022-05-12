@@ -10,7 +10,6 @@ import java.util.Objects;
 
 @Entity
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "userId", nullable = false)
@@ -31,6 +30,18 @@ public class User {
     public User() {
         this.username = "";
         this.password = "";
+    }
+
+    public List<Team> getTeamList() {
+        return teamList;
+    }
+
+    public void addTeams(Team team){
+        teamList.add(team);
+    }
+
+    public void setTeamList(List<Team> teamList) {
+        this.teamList = teamList;
     }
 
     public Integer getId() {

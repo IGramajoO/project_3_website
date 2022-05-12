@@ -10,8 +10,14 @@ public class Api {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private TeamRepository teamRepository;
+
+    @Autowired
+    private HeroRepository heroRepository;
+
     @GetMapping(path="/allUsers")
-    public Iterable<User> allUsers(){
+    Iterable<User> allUsers(){
             return userRepository.findAll();
         }
 
@@ -22,4 +28,24 @@ public class Api {
         userRepository.save(user);
         return "saved";
     }
+
+
+
+    @PostMapping("/addTeam")
+    public @ResponseBody String addteam(@RequestParam String username){
+        Team team = new Team();
+        if (userRepository.findUserByUsername(username)!=null){
+            User user1 = userRepository.findUserByUsername(username);
+            user1.addTeams(team);
+            userRepository.save(user1);
+            teamRepository.save(team);
+            return "team added";
+        } else {
+            return "username not found";
+        }
+    }
+
+
+
+
 }
