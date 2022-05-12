@@ -52,6 +52,9 @@ public class Api {
     public @ResponseBody String addHeroToTeam(@RequestParam String username, @RequestParam int teamId, @RequestParam int heroId){
         RestSpringBootController restSpringBootController = new RestSpringBootController();
 
+        if (restSpringBootController.canUse(heroId)=="0"){
+            return "sorry, please choose another hero";
+        }
         String heroInfo = restSpringBootController.getHeroInfo(heroId);
         heroInfo = heroInfo.replaceFirst("^[^\\-\\d]*", "");
         String[] numbers = heroInfo.split("[^\\-\\d]+");
@@ -71,7 +74,7 @@ public class Api {
 
                     userRepository.save(user1);
                     heroRepository.save(hero);
-                    return "team added";
+                    return "team added: "+ team.toString();
                 } else {
                     return "team not found";
                 }
@@ -84,8 +87,23 @@ public class Api {
         return "";
     }
 
+    @PostMapping("/randomTeam")
+    public @ResponseBody Team addHeroToTeam() {
+        Team rocket = new Team();
+        RestSpringBootController restSpringBootController = new RestSpringBootController();
+//
+//        if (restSpringBootController.canUse(heroId)=="0"){
+//            return "sorry, please choose another hero";
+//        }
+//        String heroInfo = restSpringBootController.getHeroInfo(heroId);
+//        heroInfo = heroInfo.replaceFirst("^[^\\-\\d]*", "");
+//        String[] numbers = heroInfo.split("[^\\-\\d]+");
+//        Heroes hero = new Heroes(heroId, Integer.parseInt(numbers[0]),Integer.parseInt(numbers[1]),Integer.parseInt(numbers[2]),Integer.parseInt(numbers[3]),Integer.parseInt(numbers[4]),Integer.parseInt(numbers[5]));
+
+
+        return null;
+    }
 
 
 
-
-}
+    }
