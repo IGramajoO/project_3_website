@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Entity
 public class Heroes {
+
     @Id
     @Column(name = "heroId", nullable = false)
     private int heroId;
@@ -19,6 +20,27 @@ public class Heroes {
     private int power;
     @Column(name = "combat", nullable = false)
     private int combat;
+
+
+    public Heroes() {
+        this.heroId = 0;
+        this.intelligence = 0;
+        this.strength = 0;
+        this.speed = 0;
+        this.durability = 0;
+        this.power = 0;
+        this.combat = 0;
+    }
+
+    public Heroes(int heroId, int intelligence, int strength, int speed, int durability, int power, int combat) {
+        this.heroId = heroId;
+        this.intelligence = intelligence;
+        this.strength = strength;
+        this.speed = speed;
+        this.durability = durability;
+        this.power = power;
+        this.combat = combat;
+    }
 
     public int getId() {
         return heroId;

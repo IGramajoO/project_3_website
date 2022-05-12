@@ -3,6 +3,8 @@ package com.example.project_3_website;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(path="/api")
 public class Api {
@@ -29,8 +31,6 @@ public class Api {
         return "saved";
     }
 
-
-
     @PostMapping("/addTeam")
     public @ResponseBody String addteam(@RequestParam String username){
         Team team = new Team();
@@ -44,6 +44,44 @@ public class Api {
             return "username not found";
         }
     }
+
+
+    @PostMapping("/addHeroToTeam")
+    public @ResponseBody String addHeroToTeam(@RequestParam String username, @RequestParam int teamId, @RequestParam int heroId){
+        RestSpringBootController restSpringBootController = new RestSpringBootController();
+
+        String heroInfo = restSpringBootController.getHeroInfo(heroId);
+        heroInfo = heroInfo.replaceFirst("^[^\\-\\d]*", "");
+        String[] numbers = heroInfo.split("[^\\-\\d]+");
+        Heroes hero = new Heroes(heroId, Integer.parseInt(numbers[0]),Integer.parseInt(numbers[1]),Integer.parseInt(numbers[2]),Integer.parseInt(numbers[3]),Integer.parseInt(numbers[4]),Integer.parseInt(numbers[5]));
+
+        if(teamRepository.existsById(teamId)){
+            Team team = teamRepository.findTeamById(teamId);
+            if (userRepository.findUserByUsername(username)!=null){
+                team.addHeroes(hero);
+
+                User user1 = userRepository.findUserByUsername(username);
+
+                List<Team> teamX = user1.getTeamList();
+
+                if (teamX.contains(team)) {
+                    team.addHeroes(hero);
+
+                    userRepository.save(user1);
+                    heroRepository.save(hero);
+                    return "team added";
+                } else {
+                    return "team not found";
+                }
+
+            } else {
+                return "username not found";
+            }
+        }
+
+        return "";
+    }
+
 
 
 

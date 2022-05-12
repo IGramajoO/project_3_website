@@ -20,6 +20,10 @@ public class Team {
         return heroesList;
     }
 
+    public void addHeroes(Heroes hero){
+        heroesList.add(hero);
+    }
+
     public void setHeroesList(List<Heroes> heroesList) {
         this.heroesList = heroesList;
     }
