@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "team")
 public class Team {
 
     @Id
@@ -12,7 +13,7 @@ public class Team {
     @Column(name = "teamId", nullable = false)
     private int teamId;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
     @JoinColumn(name = "teamId")
     List<Heroes> heroesList= new ArrayList<>();
 
