@@ -112,8 +112,6 @@ public class Api {
 
         rocket.setHeroesList(heroes);
 
-
-
         return rocket.toString();
     }
 
