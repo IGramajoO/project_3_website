@@ -44,16 +44,17 @@ public class RestSpringBootController {
     }
 
     @GetMapping("/restHeroInfo/{id}")
-    public String getHeroInfo(@PathVariable String id) {
+    public String getHeroInfo(@PathVariable int id) {
 
         try {
-            String uri="https://www.superheroapi.com/api.php/109324175078057/"+id+"/powerstats";
+            String uri="https://www.superheroapi.com/api.php/109324175078057/"+String.valueOf(id)+"/powerstats";
             RestTemplate restTemplate = new RestTemplate();
             String result = restTemplate.getForObject(uri, String.class);
             ResponseEntity<String> response = new ResponseEntity<>(result, HttpStatus.OK);
-            String s = response.toString();
-            String x = canUse(id);
-            return s + " use? " + x;
+            String s = response.getBody();
+            //String x = canUse(id);
+            //looks like we CAN call other methods in springboot
+            return s;
         }catch (Exception e){
 
             e.printStackTrace();
@@ -62,10 +63,10 @@ public class RestSpringBootController {
     }
 
     @GetMapping("/restHeroUsable/{id}")
-    public String canUse(@PathVariable String id) {
+    public String canUse(@PathVariable int id) {
 
         try {
-            String uri="https://www.superheroapi.com/api.php/109324175078057/"+id+"/powerstats";
+            String uri="https://www.superheroapi.com/api.php/109324175078057/"+String.valueOf(id)+"/powerstats";
             RestTemplate restTemplate = new RestTemplate();
             String result = restTemplate.getForObject(uri, String.class);
             ResponseEntity<String> response = new ResponseEntity<>(result, HttpStatus.OK);

@@ -4,17 +4,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Table(name = "user")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer Id;
+    @Column(name = "userId", nullable = false)
+    private Integer userId;
 
     private String username;
     private String password;
+
+
+    @OneToMany(fetch = FetchType.LAZY,cascade=CascadeType.ALL)
+    @JoinColumn(name = "userId")
+    List<Team> teamList = new ArrayList<>();
 
     public User(String username, String password) {
         this.username = username;
@@ -26,12 +34,24 @@ public class User {
         this.password = "";
     }
 
-    public Integer getId() {
-        return Id;
+    public List<Team> getTeamList() {
+        return teamList;
     }
 
-    public void setId(Integer id) {
-        Id = id;
+    public void addTeams(Team team){
+        teamList.add(team);
+    }
+
+    public void setTeamList(List<Team> teamList) {
+        this.teamList = teamList;
+    }
+
+    public Integer getId() {
+        return userId;
+    }
+
+    public void setId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
