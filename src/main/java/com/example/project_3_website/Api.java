@@ -3,6 +3,7 @@ package com.example.project_3_website;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -87,21 +88,33 @@ public class Api {
         return "";
     }
 
-    @PostMapping("/randomTeam")
-    public @ResponseBody Team addHeroToTeam() {
+    @GetMapping("/randomTeam")
+    public @ResponseBody String addHeroToTeam() {
         Team rocket = new Team();
         RestSpringBootController restSpringBootController = new RestSpringBootController();
-//
-//        if (restSpringBootController.canUse(heroId)=="0"){
-//            return "sorry, please choose another hero";
-//        }
-//        String heroInfo = restSpringBootController.getHeroInfo(heroId);
-//        heroInfo = heroInfo.replaceFirst("^[^\\-\\d]*", "");
-//        String[] numbers = heroInfo.split("[^\\-\\d]+");
-//        Heroes hero = new Heroes(heroId, Integer.parseInt(numbers[0]),Integer.parseInt(numbers[1]),Integer.parseInt(numbers[2]),Integer.parseInt(numbers[3]),Integer.parseInt(numbers[4]),Integer.parseInt(numbers[5]));
+
+        List<Heroes> heroes = new ArrayList<>();
+
+        while (heroes.size()<5){
+            int randId = 1 + (int)(Math.random() * ((731 - 1) + 1));
+            while (restSpringBootController.canUse(randId) == "0") {
+                randId = 1 + (int)(Math.random() * ((731 - 1) + 1));
+                if (restSpringBootController.canUse(randId) == "1") {
+                    String heroInfo = restSpringBootController.getHeroInfo(randId);
+                    heroInfo = heroInfo.replaceFirst("^[^\\-\\d]*", "");
+                    String[] numbers = heroInfo.split("[^\\-\\d]+");
+                    Heroes hero = new Heroes(randId, Integer.parseInt(numbers[0]), Integer.parseInt(numbers[1]), Integer.parseInt(numbers[2]), Integer.parseInt(numbers[3]), Integer.parseInt(numbers[4]), Integer.parseInt(numbers[5]));
+                    heroes.add(hero);
+                    break;
+                }
+            }
+        }
+
+        rocket.setHeroesList(heroes);
 
 
-        return null;
+
+        return rocket.toString();
     }
 
 
