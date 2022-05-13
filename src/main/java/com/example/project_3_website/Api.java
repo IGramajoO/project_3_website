@@ -112,8 +112,10 @@ public class Api {
 
         rocket.setHeroesList(heroes);
 
+        teamRepository.save(rocket);
         return rocket.toString();
     }
+
 
 
 
