@@ -22,6 +22,7 @@
 
         <div id = "accountPageContent">
             <div style = "margin-top: 130px">
+<!--                This next line does not actually have an error-->
                 <h2 style = "text-align: center" th:text="${session.User_Session.username} + '\'s Teams'">
                 </h2>
             </div>
@@ -76,7 +77,8 @@
                 </div>
             </div>
             <div id = "newTeam">
-                <form action = "#"  th:action="@{newTeam}" >
+                <form action = "#"  th:action="@{/api/addTeam}" method = "POST">
+                    <input type = "hidden" th:value="nacho" name = username>
                     <button type="submit" class="btn btn-primary btn-lg m-2 p-2 align-content-center" id = "createTeamBtn">
                         Create New Team
                     </button>

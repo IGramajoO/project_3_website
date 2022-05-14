@@ -36,6 +36,9 @@ public class LoginController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    TeamRepository teamRepository;
+
     @RequestMapping(value = "/login")
     String login(){
         return "login";
@@ -69,29 +72,9 @@ public class LoginController {
         String uri="https://www.superheroapi.com/api.php/109324175078057/520/powerstats";
         RestTemplate restTemplate = new RestTemplate();
         String result = restTemplate.getForObject(uri, String.class);
-        ResponseEntity<String> responseEntity = restTemplate.getForEntity(uri, String.class);
-        String heroString = responseEntity.getBody();
-        JSONObject jsonObject= new JSONObject(heroString);
-        model.addAttribute("hero", jsonObject);
-
-
 //        ResponseEntity<String> responseEntity = restTemplate.getForEntity(uri, String.class);
-//        String objects = responseEntity.getBody();
-//        MediaType contentType = responseEntity.getHeaders().getContentType();
-//        HttpStatus statusCode = responseEntity.getStatusCode();
-//        ResponseEntity<String> response = new ResponseEntity<>(result, HttpStatus.OK);
-//        String s = response.toString();
-
-//        RestTemplate restTemplate = new RestTemplate();
-//        ResponseEntity<List<Hero>> rateResponse =
-//                restTemplate.exchange("https://www.superheroapi.com/api.php/109324175078057/520/powerstats",
-//                        HttpMethod.GET, null, new ParameterizedTypeReference<List<Hero>>() {
-//                        });
-//        List<Hero> rates = rateResponse.getBody();
-
-//        ResponseEntity<Hero[]> responseEntity = restTemplate.getForEntity(uri, Hero[].class);
-//        Hero[] heroes = responseEntity.getBody();
-
+//        String heroString = result;
+        model.addAttribute("hero", result.split(":"));
 
         if(session.getAttribute("User_Session") == null){
             return "login";
@@ -101,15 +84,24 @@ public class LoginController {
         }
     }
 
-    @RequestMapping(value = "/newTeam")
-    String newTeam(HttpSession session){
-
-        if(session.getAttribute("User_Session") == null){
+    @PostMapping(value = "/newTeam")
+    String newTeam(HttpSession session, @RequestParam String username){
+        Team team = new Team();
+        if (userRepository.findUserByUsername(username)!=null){
+            User user1 = userRepository.findUserByUsername(username);
+            user1.addTeams(team);
+            userRepository.save(user1);
+            teamRepository.save(team);
+            return "accountPage";
+        } else {
             return "login";
         }
-        else{
-            return "newTeam";
-        }
+//        if(session.getAttribute("User_Session") == null){
+//            return "login";
+//        }
+//        else{
+//            return "newTeam";
+//        }
     }
 
     @RequestMapping(value = "/addCharacter")

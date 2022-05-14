@@ -27,12 +27,18 @@ public class Api {
         return teamRepository.findAll();
     }
 
+    @GetMapping(path="/teamById")
+    Iterable<Team> teamById(@RequestParam int user_id){
+        return teamRepository.findTeamByUserId(user_id);
+    }
+
     @PostMapping(path="/addUser")
     public String addUser(@RequestParam String username, @RequestParam String password) {
         User user = new User(username, password);
         userRepository.save(user);
         return "saved";
     }
+
     @PostMapping("/addTeam")
     public @ResponseBody String addteam(@RequestParam String username){
         Team team = new Team();
@@ -41,9 +47,9 @@ public class Api {
             user1.addTeams(team);
             userRepository.save(user1);
             teamRepository.save(team);
-            return "team added";
+            return "accountPage";
         } else {
-            return "username not found";
+            return "login";
         }
     }
 
