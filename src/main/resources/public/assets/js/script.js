@@ -1,3 +1,5 @@
+
+//Use this to get the data for team page
 async function createTeams(){
     console.log("HERE");
     let newName = document.querySelector("#newWishlistName").value;
