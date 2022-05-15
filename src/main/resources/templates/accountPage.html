@@ -27,54 +27,7 @@
                 </h2>
             </div>
             <div id = "userTeams">
-                <div class = "team">
-                    <div class = "teamName">
-                        <strong> <a href = "/team">Team One </a></strong>
-                    </div>
-                    <div class = "score">
-                        Team Rating: 123
-                    </div>
-                    <div class = "hero">
-                        Hero One
-                    </div>
-                    <div class = "hero">
-                        Hero Two
-                    </div>
-                    <div class = "hero">
-                        Hero Three
-                    </div>
-                    <div class = "hero">
-                        Hero Four
-                    </div>
-                    <div class = "hero">
-                        Hero Five
-                    </div>
-                </div>
-                <div class = "team">
-                    <div class = "teamName">
-                        <strong>Team Two</strong>
-                    </div>
-                    <div class = "score">
-                        Team Rating: 1234
-                    </div>
-                    <div class = "hero">
-                        Hero One
-                    </div>
-                    <div class = "hero">
-                        Hero Two
-                    </div>
-                    <div class = "hero">
-                        Hero Three
-                    </div>
-                </div>
-                <div class = "team">
-                    <div class = "teamName">
-                        <strong>Team Three</strong>
-                    </div>
-                    <div class = "score">
-                        Team Rating:
-                    </div>
-                </div>
+<!--                TEAMS WILL GO HERE, INTENTIONALLY BLANK-->
             </div>
             <div id = "newTeam">
                 <form action = "#"  th:action="@{/api/addTeam}" method = "POST">
@@ -86,5 +39,7 @@
             </div>
         </div>
     </main>
+    <input type = "hidden" th:value="${session.User_Session.username}" id = userId>
+    <script type="text/javascript" th:src="@{/assets/js/script.js}"></script>
 </body>
 </html>

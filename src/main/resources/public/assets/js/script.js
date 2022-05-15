@@ -1,27 +1,46 @@
 
-//Use this to get the data for team page
-async function createTeams(){
-    console.log("HERE");
-    let newName = document.querySelector("#newWishlistName").value;
-    // let url = `https://intense-springs-54966.herokuapp.com/api/addList?username=${username}&listName=${newName}`;
+//Get user's teams and display them
+populateTeams().then(r => console.log(r));
+async function populateTeams(){
+    let userId = document.getElementById("userId").value;
+    console.log(userId)
+    // let url = `localhost:8080/api/teamById?user_id=${userId}`;
+    //
+    // let res = await fetchData(url);
+    // console.log(res);
 
-    const requestOptions = {
-        method: 'PUT',
-        redirect: 'follow'
-    };
+    for(let i = 1; i < 4; i++){
+        document.querySelector("#userTeams").innerHTML +=
+            `<div class = "team" >
+                    <div class = "teamName">
+                        <strong> <a href = "/team">Team ${i} </a></strong>
+                    </div>
+                    <div class = "score">
+                        Team Rating: 123
+                    </div>
+                    <div class = "hero">
+                        Hero One
+                    </div>
+                    <div class = "hero">
+                        Hero Two
+                    </div>
+                    <div class = "hero">
+                        Hero Three
+                    </div>
+                    <div class = "hero">
+                        Hero Four
+                    </div>
+                    <div class = "hero">
+                        Hero Five
+                    </div>
+                </div>`;
+    }
 
-    let res;
-    await fetch(url, requestOptions)
-        .then(response => response.text())
-        .then(result => {
-            res = result;
-            console.log(res);
-        })
-        .then(response => console.log(response))
-        .catch(error => console.log('error', error));
+}
 
-    // document.querySelector("#newWishlistName").value = "";
-
-    // window.location.reload();
-
+async function fetchData(url){
+    let response = await fetch(url);
+    let data = await response.json();
+    console.log(data);
+    return data;
 }
