@@ -32,7 +32,7 @@
             <div id = "newTeam">
                 <form action = "#"  th:action="@{api/addTeam}" method = "POST">
 <!--                 TODO: change this to not be hardcoded v-->
-                    <input type = "hidden" th:value="nacho" name = username>
+                    <input type = "hidden" th:value="${session.User_Session.username}" name = username>
                     <button type="submit" class="btn btn-primary btn-lg m-2 p-2 align-content-center" id = "createTeamBtn">
                         Create New Team
                     </button>

@@ -34,6 +34,11 @@ public class Api {
         return teamRepository.findTeamByUserId(user_id);
     }
 
+    @GetMapping(path="/teamByUsername")
+    Iterable<Team> teamByUsername(@RequestParam String username){
+        return teamRepository.findTeamByUsername(username);
+    }
+
     @PostMapping(path="/addUser")
     public String addUser(@RequestParam String username, @RequestParam String password) {
         User user = new User(username, password);
@@ -78,6 +83,7 @@ public class Api {
                     team.addHeroes(hero);
 
                     userRepository.save(user1);
+                    teamRepository.save(team);
                     heroRepository.save(hero);
                     return "team added";
                 } else {

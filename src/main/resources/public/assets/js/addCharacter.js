@@ -25,7 +25,7 @@ async function populateChars(){
                         Power: ${res.powerstats.power} | Combat: ${res.powerstats.combat}
                   </td>
                   <td> 
-                    <form action = "/addHeroToTeam?username=${username}&teamId=${teamId}&heroId=${res.id}" method="POST">
+                    <form action = "/api/addHeroToTeam?username=${username}&teamId=${teamId}&heroId=${res.id}">
                         <input type = "hidden" value = "${username}" name = "username" id = "username">
                         <input type = "hidden" value = "${teamId}" name = "teamId" id = "teamId">
                         <input type = "hidden" value = "${res.id}" name = "heroId">

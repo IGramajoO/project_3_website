@@ -26,11 +26,11 @@
     </div>
     <div id = "teamCard">
       <table class = "table-sm table-hover table-bordered">
-        <tbody th:each="i : ${#numbers.sequence(0, team.heroesList.size()-1)}">
+        <tbody th:if="${#lists.size(team.heroesList) != 0}" th:each="hero : ${team.heroesList}">
         <tr>
           <th scope="row"> <img src="https://ftw.usatoday.com/wp-content/uploads/sites/90/2017/05/spongebob.jpg?w=1000&h=600&crop=1" alt="Spongebob"></th>
-          <td th:text="${team.heroesList[i].id} ?: 'Error'"></td>
-          <td class = "stats" th:utext="'Strength: ' + ${team.heroesList[i].strength} + ' | Intelligence: ' + ${team.heroesList[i].intelligence} + '<br /> Speed: ' + ${team.heroesList[i].speed} + ' | Durability: ' + ${team.heroesList[i].durability} + '<br /> Power: ' + ${team.heroesList[i].power} + ' | Combat: ' + ${team.heroesList[i].combat}">
+          <td th:if="${#lists.size(team.heroesList) != 0}" th:text="${hero.id} ?: 'Error'"></td>
+          <td class = "stats" th:if="${#lists.size(team.heroesList) != 0}" th:utext="'Strength: ' + ${hero.strength} + ' | Intelligence: ' + ${hero.intelligence} + '<br /> Speed: ' + ${hero.speed} + ' | Durability: ' + ${hero.durability} + '<br /> Power: ' + ${hero.power} + ' | Combat: ' + ${hero.combat} ?: 'Error'">
 <!--            Previous line just displays this format v   -->
 <!--            Strength: 100 | Intelligence: 50<br>-->
 <!--            Speed: 200 | Durability: 50<br>-->

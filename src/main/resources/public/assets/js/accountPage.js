@@ -2,10 +2,10 @@
 //Get user's teams and display them
 populateTeams().then(r => console.log(r));
 async function populateTeams(){
-    // let userId = document.getElementById("userId").value;
+    let username = document.getElementById("username").value;
     // console.log(userId)
     //TODO: Change this to look at session id once oauth works
-    let url = `http://localhost:8080/api/teamById?user_id=1`;
+    let url = `http://localhost:8080/api/teamByUsername?username=${username}`;
 
     let heroRes = await fetchData(url);
     let res = await fetchData(url);
