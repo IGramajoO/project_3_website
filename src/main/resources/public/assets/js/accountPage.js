@@ -21,7 +21,7 @@ async function populateTeams(){
             document.querySelector("#userTeams").innerHTML +=
                 `<div class = team${i} >
                     <div class = "teamName">
-                        <strong> <a href = "/team">Team ${i+1} </a></strong>
+                        <strong> <a href = "/team?team_id=${res[i].id}">Team ${i+1} </a></strong>
                     </div>
                     <div class = "score">
                         Team Rating: 123
@@ -53,6 +53,6 @@ async function populateTeams(){
 async function fetchData(url){
     let response = await fetch(url);
     let data = await response.json();
-    // console.log(data);
+    console.log(data);
     return data;
 }

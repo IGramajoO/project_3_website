@@ -67,14 +67,11 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/team")
-    String team(HttpSession session, Model model) throws JSONException {
+    String team(@RequestParam int team_id, HttpSession session, Model model) throws JSONException {
 
-        String uri="https://www.superheroapi.com/api.php/109324175078057/520/powerstats";
-        RestTemplate restTemplate = new RestTemplate();
-        String result = restTemplate.getForObject(uri, String.class);
-//        ResponseEntity<String> responseEntity = restTemplate.getForEntity(uri, String.class);
-//        String heroString = result;
-        model.addAttribute("hero", result.split(":"));
+        Team team = teamRepository.findByTeamId(team_id);
+
+        model.addAttribute("team", team);
 
         if(session.getAttribute("User_Session") == null){
             return "login";
