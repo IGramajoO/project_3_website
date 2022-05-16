@@ -116,7 +116,38 @@ public class Api {
         return rocket.toString();
     }
 
+    @GetMapping("/teamVictor")
+    public @ResponseBody String teamVictory(@RequestParam int teamIdA, @RequestParam int teamIdB) {
+        Team teamA = teamRepository.findByTeamId(teamIdA);
+        Team teamB = teamRepository.findByTeamId(teamIdB);
 
+        double scoreA=0, scoreB=0;
+
+        for (Heroes h: teamA.getHeroesList()){
+            scoreA+=heroScore(h);
+        }
+
+        for (Heroes h: teamB.getHeroesList()){
+            scoreB+=heroScore(h);
+        }
+
+        // returns 1 if team A (home team or user team) wins
+        // and 0 if team B (incoming team or randomly generated team) wins
+        if (scoreA>scoreB){
+            return "1";
+        } else {
+            return "0";
+        }
+
+    }
+
+    public double heroScore(Heroes hero){
+
+        double score = (3*hero.getPower() + hero.getIntelligence()+2*hero.getSpeed()+2*hero.getDurability()+hero.getCombat()
+                + 3*hero.getStrength()) / 5.0;
+//        (3*data1.power+data1.intelligence+2*data1.speed+2*data1.durability+data1.combat)/5;
+        return score;
+    }
 
 
     }
