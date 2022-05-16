@@ -3,23 +3,35 @@ populateChars().then(r => console.log(r));
 async function populateChars(){
     // let userId = document.getElementById("userId").value;
     // console.log(userId)
-    // let url = `localhost:8080/api/teamById?user_id=${userId}`;
+    let url = `https://www.superheroapi.com/api.php/109324175078057/3/powerstats`;
     //
-    // let res = await fetchData(url);
-    // console.log(res);
-
+    let res = await fetchData(url);
+    console.log(res);
+    let num = 1;
     for(let i = 1; i < 6; i++){
+        num = Math.floor(Math.random() * (731 - 1) + 1);
+        console.log(num);
+        url = `https://www.superheroapi.com/api.php/109324175078057/${num}`;
+        res = await fetchData(url);
+        console.log(res);
         document.querySelector("#charTable").innerHTML +=
             `<tr>
-                <th scope="row"> <img src="https://ftw.usatoday.com/wp-content/uploads/sites/90/2017/05/spongebob.jpg?w=1000&h=600&crop=1" alt="Spongebob"></th>
-                  <td>Hawkeye</td>
+                <th scope="row"> <img src="${res.image.url}" alt="Hero Picture"></th>
+                  <td>${res.name}</td>
                   <td class = "stats">
-                        Strength: 100 | Intelligence: 50<br>
-                        Speed: 200 | Durability: 50<br>
-                        Power: -150 | Combat: 58
+                        Strength: ${res.powerstats.strength} | Intelligence: ${res.powerstats.intelligence}<br>
+                        Speed: ${res.powerstats.speed} | Durability: ${res.powerstats.durability}<br>
+                        Power: ${res.powerstats.power} | Combat: ${res.powerstats.combat}
                   </td>
                   <td> <button class = "btn btn-success">Add To Team</button></td>
             </tr>`;
     }
 
+}
+
+async function fetchData(url){
+    let response = await fetch(url);
+    let data = await response.json();
+    console.log(data);
+    return data;
 }
