@@ -31,7 +31,7 @@
           <th scope="row"> <img src="https://ftw.usatoday.com/wp-content/uploads/sites/90/2017/05/spongebob.jpg?w=1000&h=600&crop=1" alt="Spongebob"></th>
           <td th:text="${team.heroesList[i].id} ?: 'Error'"></td>
           <td class = "stats" th:utext="'Strength: ' + ${team.heroesList[i].strength} + ' | Intelligence: ' + ${team.heroesList[i].intelligence} + '<br /> Speed: ' + ${team.heroesList[i].speed} + ' | Durability: ' + ${team.heroesList[i].durability} + '<br /> Power: ' + ${team.heroesList[i].power} + ' | Combat: ' + ${team.heroesList[i].combat}">
-<!--            Previous line just display this format v   -->
+<!--            Previous line just displays this format v   -->
 <!--            Strength: 100 | Intelligence: 50<br>-->
 <!--            Speed: 200 | Durability: 50<br>-->
 <!--            Power: -150 | Combat: 58-->
@@ -43,10 +43,12 @@
     </div>
     <div id = "addChar">
       <form action = "#" th:action="@{addCharacter}">
-      <button class = "btn btn-primary m-2">Add Character</button>
+          <input type = "hidden" th:value="${team.id}" id = "teamId">
+        <button class = "btn btn-primary m-2" id = "addCharBtn">Add Character</button>
       </form>
     </div>
   </div>
 </main>
+<script type="text/javascript" th:src="@{/assets/js/team.js}"></script>
 </body>
 </html>
