@@ -54,7 +54,7 @@ public class Api {
     }
 
 
-    @PostMapping("/addHeroToTeam")
+    @GetMapping("/addHeroToTeam")
     public @ResponseBody String addHeroToTeam(@RequestParam String username, @RequestParam int teamId, @RequestParam int heroId){
         RestSpringBootController restSpringBootController = new RestSpringBootController();
 
