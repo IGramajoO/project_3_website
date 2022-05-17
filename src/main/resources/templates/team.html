@@ -23,15 +23,15 @@
   <div id = "teampage">
     <div id = "teamTitle">
       <h3> Team Setup </h3>
-        <h4 style = "color: red" th:if="${#lists.size(team.heroesList) == 0}"> <strong> Team is empty, add some characters! </strong> </h4>
+        <h4 style = "color: red" th:if="${#lists.size(team.heroesList) == 0}" > <strong> Team is empty, add some characters! </strong> </h4>
     </div>
     <div id = "teamCard">
       <table class = "table-sm table-hover table-bordered">
-        <tbody th:if="${team != null}" th:each="i : ${#numbers.sequence(0, team.heroesList.size()-1)}">
-          <tr th:if="${team != null}">
-          <th th:if="${team != null}" scope="row" class="charPic"> <img src="https://ftw.usatoday.com/wp-content/uploads/sites/90/2017/05/spongebob.jpg?w=1000&h=600&crop=1" alt="Spongebob"></th>
-          <td th:if="${team != null}" th:text="${heroIds[i]} ?: 'Error'" class="charName" th:value="${heroIds[i]}"></td>
-          <td class = "stats" th:if="${team != null}" th:utext="'Strength: ' + ${team.heroesList[i].strength} + ' | Intelligence: ' + ${team.heroesList[i].intelligence} + '<br /> Speed: ' + ${team.heroesList[i].speed} + ' | Durability: ' + ${team.heroesList[i].durability} + '<br /> Power: ' + ${team.heroesList[i].power} + ' | Combat: ' + ${team.heroesList[i].combat} ?: 'Error'">
+        <tbody th:if="${#lists.size(team.heroesList) != 0}" th:each="i : ${#numbers.sequence(0, team.heroesList.size()-1)}">
+          <tr th:if="${#lists.size(team.heroesList) != 0}">
+          <th th:if="${#lists.size(team.heroesList) != 0}" scope="row" class="charPic"> <img src="https://ftw.usatoday.com/wp-content/uploads/sites/90/2017/05/spongebob.jpg?w=1000&h=600&crop=1" alt="Spongebob"></th>
+          <td th:if="${#lists.size(team.heroesList) != 0}" th:text="${heroIds[i]} ?: 'Error'" class="charName" th:value="${heroIds[i]}"></td>
+          <td class = "stats" th:if="${#lists.size(team.heroesList) != 0}" th:utext="'Strength: ' + ${team.heroesList[i].strength} + ' | Intelligence: ' + ${team.heroesList[i].intelligence} + '<br /> Speed: ' + ${team.heroesList[i].speed} + ' | Durability: ' + ${team.heroesList[i].durability} + '<br /> Power: ' + ${team.heroesList[i].power} + ' | Combat: ' + ${team.heroesList[i].combat} ?: 'Error'">
 <!--            Previous line just displays this format v   -->
 <!--            Strength: 100 | Intelligence: 50<br>-->
 <!--            Speed: 200 | Durability: 50<br>-->
