@@ -3,6 +3,7 @@ package com.example.project_3_website;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -52,6 +53,9 @@ public class Api {
     public @ResponseBody String addHeroToTeam(@RequestParam String username, @RequestParam int teamId, @RequestParam int heroId){
         RestSpringBootController restSpringBootController = new RestSpringBootController();
 
+        if (restSpringBootController.canUse(heroId)=="0"){
+            return "sorry, please choose another hero";
+        }
         String heroInfo = restSpringBootController.getHeroInfo(heroId);
         heroInfo = heroInfo.replaceFirst("^[^\\-\\d]*", "");
         String[] numbers = heroInfo.split("[^\\-\\d]+");
@@ -71,7 +75,7 @@ public class Api {
 
                     userRepository.save(user1);
                     heroRepository.save(hero);
-                    return "team added";
+                    return "team added: "+ team.toString();
                 } else {
                     return "team not found";
                 }
@@ -84,8 +88,66 @@ public class Api {
         return "";
     }
 
+    @GetMapping("/randomTeam")
+    public @ResponseBody String addHeroToTeam() {
+        Team rocket = new Team();
+        RestSpringBootController restSpringBootController = new RestSpringBootController();
+
+        List<Heroes> heroes = new ArrayList<>();
+
+        while (heroes.size()<5){
+            int randId = 1 + (int)(Math.random() * ((731 - 1) + 1));
+            while (restSpringBootController.canUse(randId) == "0") {
+                randId = 1 + (int)(Math.random() * ((731 - 1) + 1));
+                if (restSpringBootController.canUse(randId) == "1") {
+                    String heroInfo = restSpringBootController.getHeroInfo(randId);
+                    heroInfo = heroInfo.replaceFirst("^[^\\-\\d]*", "");
+                    String[] numbers = heroInfo.split("[^\\-\\d]+");
+                    Heroes hero = new Heroes(randId, Integer.parseInt(numbers[0]), Integer.parseInt(numbers[1]), Integer.parseInt(numbers[2]), Integer.parseInt(numbers[3]), Integer.parseInt(numbers[4]), Integer.parseInt(numbers[5]));
+                    heroes.add(hero);
+                    break;
+                }
+            }
+        }
+
+        rocket.setHeroesList(heroes);
+
+        teamRepository.save(rocket);
+        return rocket.toString();
+    }
+
+    @GetMapping("/teamVictor")
+    public @ResponseBody String teamVictory(@RequestParam int teamIdA, @RequestParam int teamIdB) {
+        Team teamA = teamRepository.findByTeamId(teamIdA);
+        Team teamB = teamRepository.findByTeamId(teamIdB);
+
+        double scoreA=0, scoreB=0;
+
+        for (Heroes h: teamA.getHeroesList()){
+            scoreA+=heroScore(h);
+        }
+
+        for (Heroes h: teamB.getHeroesList()){
+            scoreB+=heroScore(h);
+        }
+
+        // returns 1 if team A (home team or user team) wins
+        // and 0 if team B (incoming team or randomly generated team) wins
+        if (scoreA>scoreB){
+            return "1";
+        } else {
+            return "0";
+        }
+
+    }
+
+    public double heroScore(Heroes hero){
+
+        double score = (3*hero.getPower() + hero.getIntelligence()+2*hero.getSpeed()+2*hero.getDurability()+hero.getCombat()
+                + 3*hero.getStrength()) / 5.0;
+//        (3*data1.power+data1.intelligence+2*data1.speed+2*data1.durability+data1.combat)/5;
+        return score;
+    }
 
 
-
-
-}
+    }
