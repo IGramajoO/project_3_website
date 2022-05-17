@@ -3,6 +3,8 @@ package com.example.project_3_website;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,29 +30,41 @@ public class Api {
         return teamRepository.findAll();
     }
 
+    @GetMapping(path="/teamById")
+    Iterable<Team> teamById(@RequestParam int user_id){
+        return teamRepository.findTeamByUserId(user_id);
+    }
+
+    @GetMapping(path="/teamByUsername")
+    Iterable<Team> teamByUsername(@RequestParam String username){
+        return teamRepository.findTeamByUsername(username);
+    }
+
     @PostMapping(path="/addUser")
     public String addUser(@RequestParam String username, @RequestParam String password) {
         User user = new User(username, password);
         userRepository.save(user);
         return "saved";
     }
+
     @PostMapping("/addTeam")
-    public @ResponseBody String addteam(@RequestParam String username){
+    public @ResponseBody String addteam(@RequestParam String username, HttpServletResponse response) throws IOException {
         Team team = new Team();
         if (userRepository.findUserByUsername(username)!=null){
             User user1 = userRepository.findUserByUsername(username);
             user1.addTeams(team);
             userRepository.save(user1);
             teamRepository.save(team);
-            return "team added";
+            response.sendRedirect("/accountPage");
+            return "accountPage";
         } else {
-            return "username not found";
+            return "login";
         }
     }
 
 
-    @PostMapping("/addHeroToTeam")
-    public @ResponseBody String addHeroToTeam(@RequestParam String username, @RequestParam int teamId, @RequestParam int heroId){
+    @GetMapping("/addHeroToTeam")
+    public @ResponseBody String addHeroToTeam(@RequestParam String username, @RequestParam int teamId, @RequestParam int heroId, HttpServletResponse response) throws IOException {
         RestSpringBootController restSpringBootController = new RestSpringBootController();
 
         if (restSpringBootController.canUse(heroId)=="0"){
@@ -74,7 +88,9 @@ public class Api {
                     team.addHeroes(hero);
 
                     userRepository.save(user1);
+                    teamRepository.save(team);
                     heroRepository.save(hero);
+                    response.sendRedirect("/team?team_id=" + teamId);
                     return "team added: "+ team.toString();
                 } else {
                     return "team not found";

@@ -24,111 +24,13 @@
     </h2>
         <div id = "teamCard">
             <table class = "table-sm table-hover table-bordered">
-                <tbody>
-                <tr>
-                    <th scope="row"> <img src="https://ftw.usatoday.com/wp-content/uploads/sites/90/2017/05/spongebob.jpg?w=1000&h=600&crop=1" alt="Spongebob"></th>
-                    <td>Hawkeye</td>
-                    <td class = "stats">
-                        Strength: 100 | Intelligence: 50<br>
-                        Speed: 200 | Durability: 50<br>
-                        Power: -150 | Combat: 58
-                    </td>
-                    <td> <button class = "btn btn-success">Add To Team</button></td>
-                </tr>
-                <tr>
-                    <th scope="row"><img src="https://images.squarespace-cdn.com/content/v1/589c9dad414fb513e70a35de/1601924225488-FBYBTF3WY7B0243AFMT2/nickelodeon-releases-spongebob-meme-collectible-figures-5cc022310121e__700.jpg" alt="Spongebob"></th>
-                    <td>Godskin Noble</td>
-                    <td class = "stats">
-                        Strength: 100 | Intelligence: 50<br>
-                        Speed: 200 | Durability: 50<br>
-                        Power: -150 | Combat: 58
-                    </td>
-                    <td> <button class = "btn btn-success">Add To Team</button></td>
-                </tr>
-                <tr>
-                    <th scope="row"><img src="https://api.time.com/wp-content/uploads/2019/08/caveman-spongebob-spongegar.png" alt="Spongebob"></th>
-                    <td>Hulk</td>
-                    <td class = "stats">
-                        Strength: 100 | Intelligence: 50<br>
-                        Speed: 200 | Durability: 50<br>
-                        Power: -150 | Combat: 58
-                    </td>
-                    <td> <button class = "btn btn-success">Add To Team</button></td>
-                </tr>
-                <tr>
-                    <th scope="row"><img src="https://pbs.twimg.com/media/EUYjjANXkAQYVwR.jpg" alt="Spongebob"></th>
-                    <td>Batman</td>
-                    <td class = "stats">
-                        Strength: 100 | Intelligence: 50<br>
-                        Speed: 200 | Durability: 50<br>
-                        Power: -150 | Combat: 58
-                    </td>
-                    <td> <button class = "btn btn-success">Add To Team</button></td>
-                </tr>
-                <tr>
-                    <th scope="row"><img src="https://filmdaily.co/wp-content/uploads/2021/01/spongebob-memes-lede.jpg" alt="Spongebob"></th>
-                    <td>Patches</td>
-                    <td class = "stats">
-                        Strength: 100 | Intelligence: 50<br>
-                        Speed: 200 | Durability: 50<br>
-                        Power: -150 | Combat: 58
-                    </td>
-                    <td> <button class = "btn btn-success">Add To Team</button></td>
-                </tr>
-                <tr>
-                    <th scope="row"><img src="https://filmdaily.co/wp-content/uploads/2021/01/spongebob-memes-lede.jpg" alt="Spongebob"></th>
-                    <td>Patches</td>
-                    <td class = "stats">
-                        Strength: 100 | Intelligence: 50<br>
-                        Speed: 200 | Durability: 50<br>
-                        Power: -150 | Combat: 58
-                    </td>
-                    <td> <button class = "btn btn-success">Add To Team</button></td>
-                </tr>
-                <tr>
-                    <th scope="row"><img src="https://filmdaily.co/wp-content/uploads/2021/01/spongebob-memes-lede.jpg" alt="Spongebob"></th>
-                    <td>Patches</td>
-                    <td class = "stats">
-                        Strength: 100 | Intelligence: 50<br>
-                        Speed: 200 | Durability: 50<br>
-                        Power: -150 | Combat: 58
-                    </td>
-                    <td> <button class = "btn btn-success">Add To Team</button></td>
-                </tr>
-                <tr>
-                    <th scope="row"><img src="https://filmdaily.co/wp-content/uploads/2021/01/spongebob-memes-lede.jpg" alt="Spongebob"></th>
-                    <td>Patches</td>
-                    <td class = "stats">
-                        Strength: 100 | Intelligence: 50<br>
-                        Speed: 200 | Durability: 50<br>
-                        Power: -150 | Combat: 58
-                    </td>
-                    <td> <button class = "btn btn-success">Add To Team</button></td>
-                </tr>
-                <tr>
-                    <th scope="row"><img src="https://filmdaily.co/wp-content/uploads/2021/01/spongebob-memes-lede.jpg" alt="Spongebob"></th>
-                    <td>Patches</td>
-                    <td class = "stats">
-                        Strength: 100 | Intelligence: 50<br>
-                        Speed: 200 | Durability: 50<br>
-                        Power: -150 | Combat: 58
-                    </td>
-                    <td> <button class = "btn btn-success">Add To Team</button></td>
-                </tr>
-                <tr>
-                    <th scope="row"><img src="https://filmdaily.co/wp-content/uploads/2021/01/spongebob-memes-lede.jpg" alt="Spongebob"></th>
-                    <td>Patches</td>
-                    <td class = "stats">
-                        Strength: 100 | Intelligence: 50<br>
-                        Speed: 200 | Durability: 50<br>
-                        Power: -150 | Combat: 58
-                    </td>
-                    <td> <button class = "btn btn-success">Add To Team</button></td>
-                </tr>
+                <tbody id = "charTable">
+<!--                    Chars go here-->
                 </tbody>
             </table>
         </div>
     </main>
-
+    <input type = "hidden" th:value="${session.User_Session.username}" id = username>
+    <script type="text/javascript" th:src="@{/assets/js/addCharacter.js}"></script>
 </body>
 </html>

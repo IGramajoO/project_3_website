@@ -11,9 +11,9 @@
   <link th:href="@{/assets/css/style.css}" rel="stylesheet" type="text/css" />
 </head>
 <body>
+
 <header>
-  <h1>
-    Hero Brawl
+  <h1 th:text="'Team ' + ${team.id} ?: 'Error'">
   </h1>
   <nav th:insert="fragments.html :: nav">
 
@@ -22,70 +22,37 @@
 <main>
   <div id = "teampage">
     <div id = "teamTitle">
-      <h3> Team 1 </h3>
+      <h3> Team Setup </h3>
+        <h4 style = "color: red" th:if="${#lists.size(team.heroesList) == 0}"> <strong> Team is empty, add some characters! </strong> </h4>
     </div>
     <div id = "teamCard">
       <table class = "table-sm table-hover table-bordered">
-        <tbody>
-        <tr>
-          <th scope="row"> <img src="https://ftw.usatoday.com/wp-content/uploads/sites/90/2017/05/spongebob.jpg?w=1000&h=600&crop=1" alt="Spongebob"></th>
-          <td>Hawkeye</td>
-          <td class = "stats">
-            Strength: 100 | Intelligence: 50<br>
-            Speed: 200 | Durability: 50<br>
-            Power: -150 | Combat: 58
-          </td>
-          <td> <button class = "btn btn-danger">Remove</button></td>
-        </tr>
-        <tr>
-          <th scope="row"><img src="https://images.squarespace-cdn.com/content/v1/589c9dad414fb513e70a35de/1601924225488-FBYBTF3WY7B0243AFMT2/nickelodeon-releases-spongebob-meme-collectible-figures-5cc022310121e__700.jpg" alt="Spongebob"></th>
-          <td>Godskin Noble</td>
-          <td class = "stats">
-            Strength: 100 | Intelligence: 50<br>
-            Speed: 200 | Durability: 50<br>
-            Power: -150 | Combat: 58
-          </td>
-          <td> <button class = "btn btn-danger">Remove</button></td>
-        </tr>
-        <tr>
-          <th scope="row"><img src="https://api.time.com/wp-content/uploads/2019/08/caveman-spongebob-spongegar.png" alt="Spongebob"></th>
-          <td>Hulk</td>
-          <td class = "stats">
-            Strength: 100 | Intelligence: 50<br>
-            Speed: 200 | Durability: 50<br>
-            Power: -150 | Combat: 58
-          </td>
-          <td> <button class = "btn btn-danger">Remove</button></td>
-        </tr>
-        <tr>
-          <th scope="row"><img src="https://pbs.twimg.com/media/EUYjjANXkAQYVwR.jpg" alt="Spongebob"></th>
-          <td>Batman</td>
-          <td class = "stats">
-            Strength: 100 | Intelligence: 50<br>
-            Speed: 200 | Durability: 50<br>
-            Power: -150 | Combat: 58
-          </td>
-          <td> <button class = "btn btn-danger">Remove</button></td>
-        </tr>
-        <tr>
-          <th scope="row"><img src="https://filmdaily.co/wp-content/uploads/2021/01/spongebob-memes-lede.jpg" alt="Spongebob"></th>
-          <td>Patches</td>
-          <td class = "stats">
-            Strength: 100 | Intelligence: 50<br>
-            Speed: 200 | Durability: 50<br>
-            Power: -150 | Combat: 58
+        <tbody th:if="${team != null}" th:each="i : ${#numbers.sequence(0, team.heroesList.size()-1)}">
+          <tr th:if="${team != null}">
+          <th th:if="${team != null}" scope="row" class="charPic"> <img src="https://ftw.usatoday.com/wp-content/uploads/sites/90/2017/05/spongebob.jpg?w=1000&h=600&crop=1" alt="Spongebob"></th>
+          <td th:if="${team != null}" th:text="${heroIds[i]} ?: 'Error'" class="charName" th:value="${heroIds[i]}"></td>
+          <td class = "stats" th:if="${team != null}" th:utext="'Strength: ' + ${team.heroesList[i].strength} + ' | Intelligence: ' + ${team.heroesList[i].intelligence} + '<br /> Speed: ' + ${team.heroesList[i].speed} + ' | Durability: ' + ${team.heroesList[i].durability} + '<br /> Power: ' + ${team.heroesList[i].power} + ' | Combat: ' + ${team.heroesList[i].combat} ?: 'Error'">
+<!--            Previous line just displays this format v   -->
+<!--            Strength: 100 | Intelligence: 50<br>-->
+<!--            Speed: 200 | Durability: 50<br>-->
+<!--            Power: -150 | Combat: 58-->
           </td>
           <td> <button class = "btn btn-danger">Remove</button></td>
         </tr>
         </tbody>
       </table>
     </div>
+      <div id = "errorMsg" class = "text-center">
+
+      </div>
     <div id = "addChar">
       <form action = "#" th:action="@{addCharacter}">
-      <button class = "btn btn-primary m-2">Add Character</button>
+          <input type = "hidden" th:value="${team.id}" id = "teamId">
+        <button class = "btn btn-primary m-2" id = "addCharBtn">Add Character</button>
       </form>
     </div>
   </div>
 </main>
+<script type="text/javascript" th:src="@{/assets/js/team.js}"></script>
 </body>
 </html>

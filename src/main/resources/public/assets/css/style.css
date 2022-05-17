@@ -55,7 +55,7 @@ header{
     border-bottom: 1px solid;
 }
 
-.team{
+.team0, .team1, .team2{
     padding: 3px;
     border: 1px solid;
     border-radius: 5px;

@@ -22,61 +22,19 @@
 
         <div id = "accountPageContent">
             <div style = "margin-top: 130px">
+<!--                This next line does not actually have an error-->
                 <h2 style = "text-align: center" th:text="${session.User_Session.username} + '\'s Teams'">
                 </h2>
             </div>
             <div id = "userTeams">
-                <div class = "team">
-                    <div class = "teamName">
-                        <strong> <a href = "/team">Team One </a></strong>
-                    </div>
-                    <div class = "score">
-                        Team Rating: 123
-                    </div>
-                    <div class = "hero">
-                        Hero One
-                    </div>
-                    <div class = "hero">
-                        Hero Two
-                    </div>
-                    <div class = "hero">
-                        Hero Three
-                    </div>
-                    <div class = "hero">
-                        Hero Four
-                    </div>
-                    <div class = "hero">
-                        Hero Five
-                    </div>
-                </div>
-                <div class = "team">
-                    <div class = "teamName">
-                        <strong>Team Two</strong>
-                    </div>
-                    <div class = "score">
-                        Team Rating: 1234
-                    </div>
-                    <div class = "hero">
-                        Hero One
-                    </div>
-                    <div class = "hero">
-                        Hero Two
-                    </div>
-                    <div class = "hero">
-                        Hero Three
-                    </div>
-                </div>
-                <div class = "team">
-                    <div class = "teamName">
-                        <strong>Team Three</strong>
-                    </div>
-                    <div class = "score">
-                        Team Rating:
-                    </div>
-                </div>
+<!--                TEAMS WILL GO HERE, INTENTIONALLY BLANK-->
+            </div>
+            <div id = "errorMsg" class = "text-center">
+
             </div>
             <div id = "newTeam">
-                <form action = "#"  th:action="@{newTeam}" >
+                <form action = "#"  th:action="@{api/addTeam}" method = "POST">
+                    <input type = "hidden" th:value="${session.User_Session.username}" name = username>
                     <button type="submit" class="btn btn-primary btn-lg m-2 p-2 align-content-center" id = "createTeamBtn">
                         Create New Team
                     </button>
@@ -84,5 +42,8 @@
             </div>
         </div>
     </main>
+    <input type = "hidden" th:value="${session.User_Session.username}" id = username>
+<!--    <input type = "hidden" th:value="${session.User_Session.userId}" id = userId>-->
+    <script type="text/javascript" th:src="@{/assets/js/accountPage.js}"></script>
 </body>
 </html>
