@@ -47,13 +47,14 @@ public class Api {
     }
 
     @PostMapping("/addTeam")
-    public @ResponseBody String addteam(@RequestParam String username){
+    public @ResponseBody String addteam(@RequestParam String username, HttpServletResponse response) throws IOException {
         Team team = new Team();
         if (userRepository.findUserByUsername(username)!=null){
             User user1 = userRepository.findUserByUsername(username);
             user1.addTeams(team);
             userRepository.save(user1);
             teamRepository.save(team);
+            response.sendRedirect("/accountPage");
             return "accountPage";
         } else {
             return "login";
@@ -62,7 +63,7 @@ public class Api {
 
 
     @GetMapping("/addHeroToTeam")
-    public @ResponseBody String addHeroToTeam(@RequestParam String username, @RequestParam int teamId, @RequestParam int heroId){
+    public @ResponseBody String addHeroToTeam(@RequestParam String username, @RequestParam int teamId, @RequestParam int heroId, HttpServletResponse response) throws IOException {
         RestSpringBootController restSpringBootController = new RestSpringBootController();
 
         String heroInfo = restSpringBootController.getHeroInfo(heroId);
@@ -85,6 +86,7 @@ public class Api {
                     userRepository.save(user1);
                     teamRepository.save(team);
                     heroRepository.save(hero);
+                    response.sendRedirect("/team?team_id=" + teamId);
                     return "team added";
                 } else {
                     return "team not found";

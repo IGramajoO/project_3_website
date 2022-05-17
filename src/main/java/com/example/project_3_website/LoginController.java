@@ -70,8 +70,13 @@ public class LoginController {
     String team(@RequestParam int team_id, HttpSession session, Model model) throws JSONException {
 
         Team team = teamRepository.findByTeamId(team_id);
+//        if(team.heroesList.isEmpty()){
+//            model.addAttribute("team", null);
+//        }
+//        else{
+            model.addAttribute("team", team);
 
-        model.addAttribute("team", team);
+//        }
 
         if(session.getAttribute("User_Session") == null){
             return "login";
@@ -93,12 +98,6 @@ public class LoginController {
         } else {
             return "login";
         }
-//        if(session.getAttribute("User_Session") == null){
-//            return "login";
-//        }
-//        else{
-//            return "newTeam";
-//        }
     }
 
     @RequestMapping(value = "/addCharacter")

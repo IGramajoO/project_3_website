@@ -1,6 +1,9 @@
-
+document.querySelector("#createTeamBtn").addEventListener("mouseover", checkTeams);
 //Get user's teams and display them
 populateTeams().then(r => console.log(r));
+
+var teamSize;
+
 async function populateTeams(){
     let username = document.getElementById("username").value;
     // console.log(userId)
@@ -12,6 +15,8 @@ async function populateTeams(){
     // console.log(res);
 
     let num = 0;
+    teamSize = res.length;
+
     if(res.length === 0){
         document.querySelector("#userTeams").innerHTML += "No Teams Made Yet."
     }
@@ -32,10 +37,7 @@ async function populateTeams(){
                         continue;
                     }
                     for(let k = 0; k < res[i].heroesList.length; k++){
-                        console.log("HERE AT INDEX " + k);
-                        // console.log(res[i].heroesList);
                         num = res[i].heroesList[k].id;
-                        console.log("STILL AT INDEX " + k);
                         url = `https://www.superheroapi.com/api.php/109324175078057/${num}`;
                         heroRes = await fetchData(url);
 
@@ -47,6 +49,16 @@ async function populateTeams(){
 
             document.querySelector("#userTeams").innerHTML += `</div>`;
         }
+    }
+}
+
+function checkTeams(){
+    if(teamSize >= 3){
+        document.getElementById("errorMsg").innerHTML += `<span style="color: red" class = "text-center"> A maximum of three teams are allowed at a time </span>`;
+        document.querySelector("#createTeamBtn").disabled = true;
+    }
+    else{
+        document.querySelector("#createTeamBtn").disabled = false;
     }
 }
 

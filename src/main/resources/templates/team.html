@@ -13,7 +13,7 @@
 <body>
 
 <header>
-  <h1 th:text="${team.heroesList[0].id} ?: 'Error'">
+  <h1 th:text="'Team ' + ${team.id} ?: 'Error'">
   </h1>
   <nav th:insert="fragments.html :: nav">
 
@@ -23,14 +23,16 @@
   <div id = "teampage">
     <div id = "teamTitle">
       <h3> Team Setup </h3>
+        <h4 style = "color: red" th:if="${#lists.size(team.heroesList) == 0}"> <strong> Team is empty, add some characters! </strong> </h4>
     </div>
     <div id = "teamCard">
       <table class = "table-sm table-hover table-bordered">
-        <tbody th:if="${#lists.size(team.heroesList) != 0}" th:each="hero : ${team.heroesList}">
-        <tr>
-          <th scope="row"> <img src="https://ftw.usatoday.com/wp-content/uploads/sites/90/2017/05/spongebob.jpg?w=1000&h=600&crop=1" alt="Spongebob"></th>
-          <td th:if="${#lists.size(team.heroesList) != 0}" th:text="${hero.id} ?: 'Error'"></td>
-          <td class = "stats" th:if="${#lists.size(team.heroesList) != 0}" th:utext="'Strength: ' + ${hero.strength} + ' | Intelligence: ' + ${hero.intelligence} + '<br /> Speed: ' + ${hero.speed} + ' | Durability: ' + ${hero.durability} + '<br /> Power: ' + ${hero.power} + ' | Combat: ' + ${hero.combat} ?: 'Error'">
+        <tbody th:if="${team != null}" th:each="hero : ${team.heroesList}">
+          <tbody th:if="${team != null}" th:each="hero : ${team.heroesList}">
+          <tr th:if="${team != null}">
+          <th th:if="${team != null}" scope="row"> <img src="https://ftw.usatoday.com/wp-content/uploads/sites/90/2017/05/spongebob.jpg?w=1000&h=600&crop=1" alt="Spongebob"></th>
+          <td th:if="${team != null}" th:text="${hero.id} ?: 'Error'"></td>
+          <td class = "stats" th:if="${team != null}" th:utext="'Strength: ' + ${hero.strength} + ' | Intelligence: ' + ${hero.intelligence} + '<br /> Speed: ' + ${hero.speed} + ' | Durability: ' + ${hero.durability} + '<br /> Power: ' + ${hero.power} + ' | Combat: ' + ${hero.combat} ?: 'Error'">
 <!--            Previous line just displays this format v   -->
 <!--            Strength: 100 | Intelligence: 50<br>-->
 <!--            Speed: 200 | Durability: 50<br>-->

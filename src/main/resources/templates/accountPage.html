@@ -29,9 +29,11 @@
             <div id = "userTeams">
 <!--                TEAMS WILL GO HERE, INTENTIONALLY BLANK-->
             </div>
+            <div id = "errorMsg" class = "text-center">
+
+            </div>
             <div id = "newTeam">
                 <form action = "#"  th:action="@{api/addTeam}" method = "POST">
-<!--                 TODO: change this to not be hardcoded v-->
                     <input type = "hidden" th:value="${session.User_Session.username}" name = username>
                     <button type="submit" class="btn btn-primary btn-lg m-2 p-2 align-content-center" id = "createTeamBtn">
                         Create New Team
