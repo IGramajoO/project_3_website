@@ -7,12 +7,11 @@ var teamSize;
 async function populateTeams(){
     let username = document.getElementById("username").value;
     // console.log(userId)
-    //TODO: Change this to look at session id once oauth works
+    //TODO: Change this to not be localhost
     let url = `http://localhost:8080/api/teamByUsername?username=${username}`;
 
     let heroRes = await fetchData(url);
     let res = await fetchData(url);
-    // console.log(res);
 
     let num = 0;
     teamSize = res.length;
