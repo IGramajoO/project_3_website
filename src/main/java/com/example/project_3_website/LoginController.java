@@ -70,9 +70,14 @@ public class LoginController {
     String team(@RequestParam int team_id, HttpSession session, Model model) throws JSONException {
 
         Team team = teamRepository.findByTeamId(team_id);
-//        if(team.heroesList.isEmpty()){
-//            model.addAttribute("team", null);
-//        }
+
+        int[] heroIds = new int[team.heroesList.size()];
+        if(!team.heroesList.isEmpty()){
+            for(int i = 0; i < team.heroesList.size(); i++){
+                heroIds[i] = team.heroesList.get(i).getId();
+            }
+            model.addAttribute("heroIds", heroIds);
+        }
 //        else{
             model.addAttribute("team", team);
 
